@@ -14,10 +14,14 @@ def base_service_error_handler(exception: BaseServiceError):
 
 def create_app(config_obj):
     app = Flask(__name__,
-    #        template_folder="../templates",
-    #        static_folder="../static"
+            template_folder="../templates",
+            static_folder="../static"
     )
     app.config.from_object(config_obj)
+
+    @app.route('/')
+    def index():
+        return render_template('index.html')
 
     CORS(app=app)
     db.init_app(app)
