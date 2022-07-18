@@ -1,5 +1,3 @@
-from typing import Optional
-
 from project.dao.base import BaseDAO
 from project.exceptions import ItemNotFound
 from project.models import Director
@@ -24,7 +22,7 @@ class DirectorsService:
         raise ItemNotFound(f'Director with did={did} not exists.')
 
 
-    def get_all(self, page: Optional[int] = None) -> list[Director]:
+    def get_all(self, **kwargs) -> list[Director]:
         """Отдаёт всех режжисёров с пагинацией, принимает номер страницы"""
-        return self.dao.get_all(page=page)
+        return self.dao.get_all(page=kwargs["page"])
 

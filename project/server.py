@@ -12,10 +12,12 @@ def base_service_error_handler(exception: BaseServiceError):
     return jsonify({'error': str(exception)}), exception.code
 
 
+cors = CORS()
+
 def create_app(config_obj):
     app = Flask(__name__,
-            template_folder="../templates",
-            static_folder="../static"
+#            template_folder="./templates",
+#            static_folder="./static"
     )
     app.config.from_object(config_obj)
 
@@ -23,7 +25,7 @@ def create_app(config_obj):
     def index():
         return render_template('index.html')
 
-    CORS(app=app)
+    cors.init_app(app)
     db.init_app(app)
     api.init_app(app)
 

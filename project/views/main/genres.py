@@ -26,4 +26,4 @@ class GenreView(Resource):
         """
         Get genre by id.
         """
-        return genre_service.get_item(genre_id)
+        return genre_service.get_by_id(genre_id)

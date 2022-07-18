@@ -26,6 +26,6 @@ class MoviesService:
         raise ItemNotFound(f'Movie with mid={mid} not exists.')
 
 
-    def get_all(self, page: Optional[int] = None, status: Optional[str] = None) -> list[Movie]:
+    def get_all(self, **kwargs) -> list[Movie]:
         """Отдаёт все при все фильмы, для пагинации принимает номер страницы и статус для сортировки"""
-        return self.dao.get_all(page=page, status=status)
+        return self.dao.get_all(**kwargs)
