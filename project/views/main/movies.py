@@ -8,7 +8,7 @@ api = Namespace('movies')
 
 
 @api.route('/')
-class MoviessView(Resource):
+class MoviesView(Resource):
     @api.expect(page_parser)
     @api.marshal_with(movie, as_list=True, code=200, description='OK')
     def get(self):
@@ -18,14 +18,14 @@ class MoviessView(Resource):
         return movie_service.get_all(**page_parser.parse_args())
 
 
-@api.route('/<int: mid>/')
-class DirectorView(Resource):
+@api.route('/<int:mid>/')
+class MovieView(Resource):
     @api.response(404, 'Not Found')
     @api.marshal_with(movie, code=200, description='OK')
     def get(self, mid: int):
         """
         Get movie by id.
         """
-        return movie_service.get_item(mid)
+        return movie_service.get_by_id(mid)
 
 
