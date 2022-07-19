@@ -10,13 +10,18 @@ from project.setup.db import models
 
 class Genre(models.Base):
     __tablename__ = 'genres'
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100), unique=True, nullable=False)
+    def __repr__(self):
+        return f"<Genre '{self.name.title()}'>"
 
 
 class Director(models.Base):
     __tablename__ = 'directors'
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(255))
+    def __repr__(self):
+        return f"<Director '{self.name.title()}'>"
 
 
 class Movie(models.Base):
@@ -31,6 +36,8 @@ class Movie(models.Base):
     genre = relationship("Genre")
     director_id = Column(Integer, ForeignKey("directors.id"))
     director = relationship("Director")
+    def __repr__(self):
+        return f"<Movie '{self.title.title()}'>"
 
 
 class User(models.Base):
@@ -41,5 +48,7 @@ class User(models.Base):
     name = Column(String(200))
     surname = Column(String(200))
     favorite_genre = Column(String(200))
+    def __repr__(self):
+        return f"<User '{self.email}'>"
 
 

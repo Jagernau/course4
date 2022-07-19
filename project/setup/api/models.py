@@ -11,6 +11,12 @@ genre: Model = api.model('Жанр', {
 })
 
 
+director: Model = api.model('Режиссер', {
+    'id': fields.Integer(required=True, example=1),
+    'name': fields.String(required=True, example='Квентин Тарантино')
+})
+
+
 movie: Model = api.model('Фильм', {
     'id': fields.Integer(required=True, example=1),
     'title': fields.String(required=True, max_length=255, example='Чикаго'),
@@ -18,14 +24,9 @@ movie: Model = api.model('Фильм', {
     'trailer': fields.String(required=True, max_lenght=255, example='https://www.youtube.com/watch?v=NMSUEhDWXH0'),
     'year': fields.Integer(required=True, example=1988),
     'rating': fields.Float(required=True, example=8.4),
-    'genre_id': fields.Integer(required=True, example=1),
-    'director_id': fields.Integer(required=True, example=1)
-})
+    'genre': fields.Nested(genre),
+    'director': fields.Nested(director),
 
-
-director: Model = api.model('Режиссер', {
-    'id': fields.Integer(required=True, example=1),
-    'name': fields.String(required=True, example='Квентин Тарантино')
 })
 
 
