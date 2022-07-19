@@ -39,5 +39,7 @@ class User(models.Base):
     email = Column(String(150), unique=True, nullable=False)
     password = Column(String(200))
     name = Column(String(200))
+    surname = Column(String(200))
+    favorite_genre = Column(String(200))
 
 

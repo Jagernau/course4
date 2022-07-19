@@ -24,6 +24,8 @@ class BaseConfig:
         'ensure_ascii': False,
     }
 
+    ALGORITM = 'HS256'
+
 
 class TestingConfig(BaseConfig):
     TESTING = True

@@ -33,5 +33,7 @@ user: Model = api.model('Юзер', {
     'id': fields.Integer(required=True, example=1),
     'email': fields.String(required=True, max_length=150, example="superman@mail.ru"),
     'password': fields.String(required=True, max_length=250, example="uuygTt&5)=uu7yghu8uggt4efh"),
-    'name': fields.String(required=True, max_length=150, example="Максон Каркасон")
+    'name': fields.String(required=True, max_length=150, example="Максон Каркасон"),
+    'surname': fields.String(required=True, max_length=200, example="Петров"),
+    'favorite_genre': fields.String(required=True, max_length=150, example="Ужасы")
 })

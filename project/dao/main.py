@@ -16,3 +16,7 @@ class UsersDAO(BaseDAO[User]):
 
 class MoviesDAO(BaseDAO[Movie]):
     __model__ = Movie
+
+
+class AuthDAO(BaseDAO[User]):
+    __model__ = User
