@@ -27,3 +27,11 @@ director: Model = api.model('Режиссер', {
     'id': fields.Integer(required=True, example=1),
     'name': fields.String(required=True, example='Квентин Тарантино')
 })
+
+
+user: Model = api.model('Юзер', {
+    'id': fields.Integer(required=True, example=1),
+    'email': fields.String(required=True, max_length=150, example="superman@mail.ru"),
+    'password': fields.String(required=True, max_length=250, example="uuygTt&5)=uu7yghu8uggt4efh"),
+    'name': fields.String(required=True, max_length=150, example="Максон Каркасон")
+})

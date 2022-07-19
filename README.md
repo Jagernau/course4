@@ -18,6 +18,11 @@ pip install -r requirements.dev.txt
 export FLASK_ENV='development'
 ```
 
+- У меня без flask run не работает, так что:
+```shell
+export FLASK_APP=run.py
+```
+
 - Создание моделей (очистит БД и создаст все модели, указанные в импорте)
 ```shell
 python create_tables.py
@@ -29,8 +34,8 @@ python load_fixture.py
 ```
 Скрпит читает файл fixtures.json и загружает данные в базу. Если данные уже загружены - выводит соответсвующее сообщение. 
 
-- Запуск тестов
+##Запуск
 ```shell
-pytest .
+flask run
 ```
 
