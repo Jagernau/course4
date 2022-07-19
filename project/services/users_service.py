@@ -25,6 +25,7 @@ class UsersService:
         raise ItemNotFound(f'Director with uid={uid} not exists.')
 
     def update_part(self, data, uid) -> None:
-        """Изменить информацию пользователя: 
+        """Изменить информацию пользователя:  """
+        pass
 
 
