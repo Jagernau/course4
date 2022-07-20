@@ -15,17 +15,18 @@ class MoviesView(Resource):
         """
         Get all movies.
         """
-        return movie_service.get_all(**page_parser.parse_args())
+        return movie_service.get_all(**page_parser.parse_args()), 200
 
 
 @api.route('/<int:mid>/')
 class MovieView(Resource):
-    @api.response(404, 'Not Found')
+#    @api.response(404, 'Not Found')
     @api.marshal_with(movie, code=200, description='OK')
     def get(self, mid: int):
         """
         Get movie by id.
         """
-        return movie_service.get_by_id(mid)
+        return movie_service.get_by_id(mid), 200
+
 
 

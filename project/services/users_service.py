@@ -5,11 +5,6 @@ from project.tools.security import generate_password_hash, compose_passwords
 
 #  Сервис юзера, принимает общюю ДАО: BaseDAO  #
 #  До вьюх  !!  #
-#  get/uid  #
-#  path/uid/json  #
-#  put/uid/json:password  #
-
-
 
 
 

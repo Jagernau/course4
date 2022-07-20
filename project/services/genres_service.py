@@ -20,7 +20,8 @@ class GenresService:
         """Отдаёт жанр текстом, принимает pk (или id по другому)"""
         if genre := self.dao.get_by_id(pk):
             return genre
-        raise ItemNotFound(f'Genre with pk={pk} not exists.')
+        else:
+            raise ItemNotFound(f'Genre with pk={pk} not exists.')
 
 
     def get_all(self, **kwargs ) -> list[Genre]:

@@ -23,7 +23,8 @@ class MoviesService:
         """Отдаёт информацию по фильму, принимает pk (или id по другому)"""
         if movie := self.dao.get_by_id(mid):
             return movie
-        raise ItemNotFound(f'Movie with mid={mid} not exists.')
+        else:
+            raise ItemNotFound(f'Movie with mid={mid} not exists.')
 
 
     def get_all(self, **kwargs) -> list[Movie]:

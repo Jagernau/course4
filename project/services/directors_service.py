@@ -19,7 +19,8 @@ class DirectorsService:
         """Отдаёт одного режиссёра, принимая id(его did )"""
         if director:= self.dao.get_by_id(did):
             return director
-        raise ItemNotFound(f'Director with did={did} not exists.')
+        else:
+            raise ItemNotFound(f'Director with did={did} not exists.')
 
 
     def get_all(self, **kwargs) -> list[Director]:

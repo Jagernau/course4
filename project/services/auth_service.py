@@ -1,8 +1,10 @@
 from project.dao.base import BaseDAO
-from project.models import User
+
 from project.tools.security import compose_passwords
 from project.config import BaseConfig
 
+
+from flask_restx import abort
 
 import calendar
 import datetime
@@ -26,11 +28,11 @@ class AuthService:
         user = self.dao.get_user_by_email(email)
         
         if not user:
-            return False
+            abort(401, "Нет такого  пользователя")
 
         if not is_refresh:
             if not compose_passwords(user.password, password):
-                return False
+                abort(401, "Нет такого пароля")
 
 
         data = {
@@ -60,7 +62,7 @@ class AuthService:
         user = self.dao.get_user_by_email(email)
 
         if not user:
-            raise Exception()
+            abort(401, "Нет такого пользователя")
         return self.generate_tokens(user.email, user.password, is_refresh=True)
 
 

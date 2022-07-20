@@ -47,7 +47,8 @@ class User(models.Base):
     password = Column(String(200))
     name = Column(String(200))
     surname = Column(String(200))
-    favorite_genre = Column(String(200))
+    favorite_genre = Column(String(200), ForeignKey("genres.id"))
+    genre = relationship("Genre")
     def __repr__(self):
         return f"<User '{self.email}'>"
 

@@ -50,10 +50,3 @@ class UserChangePassword(Resource):
         user_service.update(req_json, uid)
         return "", 204
 
-
-
-
-
-
-
-
