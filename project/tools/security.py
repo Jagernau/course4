@@ -2,8 +2,9 @@ import base64
 import hashlib
 from typing import Union
 import hmac
+import jwt
 
-from flask import current_app
+from flask import current_app, abort, request
 
 
 def __generate_password_digest(password: str) -> bytes:
@@ -29,4 +30,19 @@ def compose_passwords(hash_user: Union[str, bytes], input_password: str):
             )
         )
 
-    
+
+def auth_required(func):
+    def wrapper(*args, **kwargs):
+        if "Authorization" not in request.headers:
+            abort(401)
+
+        data = request.headers["Authorization"]
+        token = data.split("Bearer ")[-1]
+        try:
+            jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=current_app.config["ALGORITM"])
+        except Exception:
+            abort(401)
+        return func(*args, **kwargs)
+
+    return wrapper
+

@@ -4,6 +4,9 @@ from flask import request
 from project.container import user_service
 from project.setup.api.models import user
 
+from project.tools.security import auth_required
+
+
 api = Namespace('user')
 
 
@@ -11,7 +14,7 @@ api = Namespace('user')
 @api.route('/<int:uid>/')
 class UserView(Resource):
 
-
+    @auth_required
     @api.response(404, 'Not Found')
     @api.marshal_with(user, code=200, description='OK')
     def get(self, uid: int):
