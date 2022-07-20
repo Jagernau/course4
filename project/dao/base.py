@@ -5,7 +5,7 @@ from flask_sqlalchemy import BaseQuery
 from sqlalchemy.orm import scoped_session
 from werkzeug.exceptions import NotFound
 from project.setup.db.models import Base
-from project.models import Movie, User
+
 T = TypeVar('T', bound=Base)
 
 
@@ -37,7 +37,7 @@ class BaseDAO(Generic[T]):
 
         if page != None and status == "new":
             try:
-                sort = stmt.order_by(Movie.year.desc())
+                sort = stmt.order_by(self.__model__.year.desc())
                 return sort.paginate(page, self._items_per_page).items
             except NotFound:
                 return []
@@ -50,7 +50,7 @@ class BaseDAO(Generic[T]):
 
         if status == "new" or  status == "New":
             try:
-                return stmt.order_by(Movie.year.desc()).all()
+                return stmt.order_by(self.__model__.year.desc()).all()
             except NotFound:
                 return[]
         
@@ -61,11 +61,11 @@ class BaseDAO(Generic[T]):
     def get_user_by_email(self, email: Optional[str]):
         """Получить поль. по email"""
         stmt: BaseQuery = self._db_session.query(self.__model__)
-        return stmt.filter(User.email == email).first()
+        return stmt.filter(self.__model__.email == email).first()
 
 
     def create(self, data):
-        user =  User(**data)
+        user =  self.__model__(**data)
         self._db_session.add(user)
         self._db_session.commit()
 

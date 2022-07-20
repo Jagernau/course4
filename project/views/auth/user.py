@@ -10,6 +10,8 @@ api = Namespace('user')
 
 @api.route('/<int:uid>/')
 class UserView(Resource):
+
+
     @api.response(404, 'Not Found')
     @api.marshal_with(user, code=200, description='OK')
     def get(self, uid: int):
