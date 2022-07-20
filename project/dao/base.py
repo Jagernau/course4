@@ -70,6 +70,12 @@ class BaseDAO(Generic[T]):
         self._db_session.commit()
 
 
+    def update(self, user):
+        self._db_session.add(user)
+        self._db_session.commit()
+        
+
+
 
 
 

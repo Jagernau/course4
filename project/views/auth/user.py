@@ -31,6 +31,12 @@ class UserView(Resource):
         return "", 204
 
 
+    def put(self, uid):
+        req_json = request.json
+        user_service.update(req_json, uid)
+        return "", 204
+
+
 
 
 
