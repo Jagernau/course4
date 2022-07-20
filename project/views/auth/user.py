@@ -24,6 +24,7 @@ class UserView(Resource):
         return user_service.get_by_id(uid)
 
 
+    @auth_required
     @api.response(404, 'Not Found')
     def patch(self, uid: int):
         """
@@ -33,7 +34,7 @@ class UserView(Resource):
         user_service.update_part(data, uid)
         return "", 204
 
-
+    @auth_required
     def put(self, uid):
         req_json = request.json
         user_service.update(req_json, uid)
