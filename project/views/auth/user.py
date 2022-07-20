@@ -15,7 +15,6 @@ api = Namespace('user')
 class UserView(Resource):
 
     @auth_required
-    @api.response(404, 'Not Found')
     @api.marshal_with(user, code=200, description='OK')
     def get(self):
         """
@@ -27,7 +26,6 @@ class UserView(Resource):
 
 
     @auth_required
-    @api.response(404, 'Not Found')
     def patch(self):
         """
         Изменить информацию пользователя

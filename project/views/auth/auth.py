@@ -30,7 +30,7 @@ class AuthLogin(Resource):
 
         tokens = auth_service.generate_tokens(email, password)
 
-        return tokens
+        return tokens, 201
 
 
     def put(self):

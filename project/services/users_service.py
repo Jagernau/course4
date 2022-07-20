@@ -22,7 +22,8 @@ class UsersService:
         """Отдаёт одного юзера, принимая id(его uid )"""
         if user:= self.dao.get_by_id(uid):
             return user
-        raise ItemNotFound(f'User with uid={uid} not exists.')
+        else:
+            raise ItemNotFound(f'User with uid={uid} not exists.')
 
 
     def update_part(self, data, uid) -> None:
@@ -35,7 +36,8 @@ class UsersService:
             if 'favorite_genre' in data:
                 user.favorite_genre = data['favorite_genre']
             self.dao.update(user)
-        raise ItemNotFound(f'User with uid={uid} not exist.')
+        else:
+            raise ItemNotFound(f'User with uid={uid} not exist.')
 
 
     def create(self, data):
