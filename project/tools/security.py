@@ -46,3 +46,17 @@ def auth_required(func):
 
     return wrapper
 
+
+
+def decode_token(token: str):
+    decoded_token = {}
+    try:
+        decoded_token = jwt.decode(
+            jwt=token,
+            key=current_app.config["SECRET_KEY"],
+            algorithms=current_app.config["ALGORITM"]
+            )
+    except Exception:
+        abort(401)
+    return decoded_token
+
