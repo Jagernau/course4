@@ -22,7 +22,7 @@ class UserView(Resource):
         """
         token = request.headers["Authorization"].split("Bearer ")[-1]
         uid = decode_token(token)["id"]
-        return user_service.get_by_id(uid)
+        return user_service.get_by_id(uid), 200
 
 
     @auth_required

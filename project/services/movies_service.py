@@ -1,5 +1,3 @@
-from typing import Optional
-
 
 from project.dao.base import BaseDAO
 from project.exceptions import ItemNotFound
